@@ -15,8 +15,8 @@ public class StockService {
     }
 
     // 재고 감소 메소드
-    @Transactional
-    public void decrease(Long id, Long quantity) {
+    //@Transactional
+    public synchronized void decrease(Long id, Long quantity) {
         Stock stock = sr.findById(id).orElseThrow();    // Stock 조회하고
         stock.decrease(quantity);   // 재고 감소시킨 뒤
         sr.saveAndFlush(stock); // 갱신된 값 저장하기
